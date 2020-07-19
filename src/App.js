@@ -1,14 +1,14 @@
 import React, { Component } from "react";
+import Counter from "./containers/Counter";
 
-class Counter extends Component {
-  state = { counterVal: 0 };
+class App extends Component {
   render() {
     return (
       <div className="container-outer">
-        <h1>Counter</h1>
+        <Counter />
       </div>
     );
   }
 }
 
-export default Counter;
+export default App;
