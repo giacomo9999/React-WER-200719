@@ -2,37 +2,38 @@ import React, { Component } from "react";
 
 import CounterDisplay from "../components/CounterDisplay";
 import CounterButton from "../components/CounterButton";
+import CounterResults from "../components/CounterResults";
 import { connect } from "react-redux";
 
 class Counter extends Component {
-  state = { counterValue: 0 };
+  // state = { counterValue: 0 };
 
-  counterChangeHandler = (action, valueIn) => {
-    switch (action) {
-      case "inc":
-        this.setState((prevState) => {
-          return { counterValue: prevState.counterValue + 1 };
-        });
-        break;
-      case "dec":
-        this.setState((prevState) => {
-          return { counterValue: prevState.counterValue - 1 };
-        });
-        break;
-      case "add":
-        this.setState((prevState) => {
-          return { counterValue: prevState.counterValue + valueIn };
-        });
-        break;
-      case "subtract":
-        this.setState((prevState) => {
-          return { counterValue: prevState.counterValue - valueIn };
-        });
-        break;
-      default:
-        break;
-    }
-  };
+  // counterChangeHandler = (action, valueIn) => {
+  //   switch (action) {
+  //     case "inc":
+  //       this.setState((prevState) => {
+  //         return { counterValue: prevState.counterValue + 1 };
+  //       });
+  //       break;
+  //     case "dec":
+  //       this.setState((prevState) => {
+  //         return { counterValue: prevState.counterValue - 1 };
+  //       });
+  //       break;
+  //     case "add":
+  //       this.setState((prevState) => {
+  //         return { counterValue: prevState.counterValue + valueIn };
+  //       });
+  //       break;
+  //     case "subtract":
+  //       this.setState((prevState) => {
+  //         return { counterValue: prevState.counterValue - valueIn };
+  //       });
+  //       break;
+  //     default:
+  //       break;
+  //   }
+  // };
 
   render() {
     return (
@@ -54,13 +55,21 @@ class Counter extends Component {
           buttonName={"Subtract 5"}
           buttonFunction={this.props.onSubtractFromCounter}
         />
+        <CounterButton
+          buttonName={"Store Result"}
+          buttonFunction={this.props.onStoreResult}
+        />
+        <CounterResults
+          results={this.props.results}
+          deleteResult={this.props.onDeleteResult}
+        />
       </div>
     );
   }
 }
 
 const mapStateToProps = (state) => {
-  return { ctr: state.counterValue };
+  return { ctr: state.counterValue, results: state.results };
 };
 
 const mapDispatchToProps = (dispatch) => {
@@ -69,6 +78,9 @@ const mapDispatchToProps = (dispatch) => {
     onDecrementCounter: () => dispatch({ type: "DECREMENT" }),
     onAddToCounter: () => dispatch({ type: "ADD", payload: 5 }),
     onSubtractFromCounter: () => dispatch({ type: "SUBTRACT", payload: 5 }),
+    onStoreResult: () => dispatch({ type: "STORE_RESULT" }),
+    onDeleteResult: (elemId) =>
+      dispatch({ type: "DELETE_RESULT", elemId: elemId }),
   };
 };
 
