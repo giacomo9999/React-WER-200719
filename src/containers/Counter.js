@@ -2,6 +2,7 @@ import React, { Component } from "react";
 
 import CounterDisplay from "../components/CounterDisplay";
 import CounterButton from "../components/CounterButton";
+import { connect } from "react-redux";
 
 class Counter extends Component {
   state = { counterValue: 0 };
@@ -36,32 +37,39 @@ class Counter extends Component {
   render() {
     return (
       <div className="container-inner">
-        <CounterDisplay counterValue={this.state.counterValue} />
+        <CounterDisplay counterValue={this.props.ctr} />
         <CounterButton
           buttonName={"Increment"}
-          buttonFunction={() => this.counterChangeHandler("inc")}
+          buttonFunction={this.props.onIncrementCounter}
         />
         <CounterButton
           buttonName={"Decrement"}
-          buttonFunction={() => {
-            this.counterChangeHandler("dec");
-          }}
+          buttonFunction={this.props.onDecrementCounter}
         />
         <CounterButton
           buttonName={"Add 5"}
-          buttonFunction={() => {
-            this.counterChangeHandler("add", 5);
-          }}
+          buttonFunction={this.props.onAddToCounter}
         />
         <CounterButton
           buttonName={"Subtract 5"}
-          buttonFunction={() => {
-            this.counterChangeHandler("subtract", 5);
-          }}
+          buttonFunction={this.props.onSubtractFromCounter}
         />
       </div>
     );
   }
 }
 
-export default Counter;
+const mapStateToProps = (state) => {
+  return { ctr: state.counterValue };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    onIncrementCounter: () => dispatch({ type: "INCREMENT" }),
+    onDecrementCounter: () => dispatch({ type: "DECREMENT" }),
+    onAddToCounter: () => dispatch({ type: "ADD", payload: 5 }),
+    onSubtractFromCounter: () => dispatch({ type: "SUBTRACT", payload: 5 }),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Counter);
