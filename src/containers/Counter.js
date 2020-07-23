@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 
+import * as actionTypes from "../store/actions";
 import CounterDisplay from "../components/CounterDisplay";
 import CounterButton from "../components/CounterButton";
 import CounterResults from "../components/CounterResults";
@@ -74,13 +75,14 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    onIncrementCounter: () => dispatch({ type: "INCREMENT" }),
-    onDecrementCounter: () => dispatch({ type: "DECREMENT" }),
-    onAddToCounter: () => dispatch({ type: "ADD", payload: 5 }),
-    onSubtractFromCounter: () => dispatch({ type: "SUBTRACT", payload: 5 }),
-    onStoreResult: () => dispatch({ type: "STORE_RESULT" }),
+    onIncrementCounter: () => dispatch({ type: actionTypes.INCREMENT }),
+    onDecrementCounter: () => dispatch({ type: actionTypes.DECREMENT }),
+    onAddToCounter: () => dispatch({ type: actionTypes.ADD, payload: 5 }),
+    onSubtractFromCounter: () =>
+      dispatch({ type: actionTypes.SUBTRACT, payload: 5 }),
+    onStoreResult: () => dispatch({ type: actionTypes.STORE_RESULT }),
     onDeleteResult: (elemId) =>
-      dispatch({ type: "DELETE_RESULT", elemId: elemId }),
+      dispatch({ type: actionTypes.DELETE_RESULT, elemId: elemId }),
   };
 };
 

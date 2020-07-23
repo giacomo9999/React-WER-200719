@@ -1,16 +1,18 @@
+import * as actionTypes from "./actions";
+
 const initialState = { counterValue: 0, results: [] };
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case "INCREMENT":
+    case actionTypes.INCREMENT:
       return { ...state, counterValue: state.counterValue + 1 };
-    case "DECREMENT":
+    case actionTypes.DECREMENT:
       return { ...state, counterValue: state.counterValue - 1 };
-    case "ADD":
+    case actionTypes.ADD:
       return { ...state, counterValue: state.counterValue + action.payload };
-    case "SUBTRACT":
+    case actionTypes.SUBTRACT:
       return { ...state, counterValue: state.counterValue - action.payload };
-    case "STORE_RESULT":
+    case actionTypes.STORE_RESULT:
       console.log("storing result...");
       return {
         ...state,
@@ -19,7 +21,7 @@ const reducer = (state = initialState, action) => {
           value: state.counterValue,
         }),
       };
-    case "DELETE_RESULT":
+    case actionTypes.DELETE_RESULT:
       console.log("deleting result", action.elemId);
       return {
         ...state,
