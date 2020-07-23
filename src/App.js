@@ -4,7 +4,7 @@ import Counter from "./containers/Counter";
 class App extends Component {
   render() {
     return (
-      <div className="container-outer">
+      <div data-test="component-app" className="container-outer">
         <Counter />
       </div>
     );
