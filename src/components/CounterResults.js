@@ -7,7 +7,6 @@ const counterResults = (props) => {
     </li>
   ));
 
-  console.log("ResultsList:", resultsList);
   return (
     <div className="container-inner">
       <ul>{resultsList}</ul>

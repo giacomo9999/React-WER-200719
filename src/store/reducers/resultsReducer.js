@@ -5,7 +5,6 @@ const initialState = { results: [] };
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case actionTypes.STORE_RESULT:
-      console.log("storing result...", action);
       return {
         ...state,
         results: state.results.concat({
@@ -14,7 +13,6 @@ const reducer = (state = initialState, action) => {
         }),
       };
     case actionTypes.DELETE_RESULT:
-      console.log("deleting result", action.elemId);
       return {
         ...state,
         results: state.results.filter((elem) => elem.id !== action.elemId),
