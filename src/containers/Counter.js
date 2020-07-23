@@ -7,35 +7,6 @@ import CounterResults from "../components/CounterResults";
 import { connect } from "react-redux";
 
 class Counter extends Component {
-  // state = { counterValue: 0 };
-
-  // counterChangeHandler = (action, valueIn) => {
-  //   switch (action) {
-  //     case "inc":
-  //       this.setState((prevState) => {
-  //         return { counterValue: prevState.counterValue + 1 };
-  //       });
-  //       break;
-  //     case "dec":
-  //       this.setState((prevState) => {
-  //         return { counterValue: prevState.counterValue - 1 };
-  //       });
-  //       break;
-  //     case "add":
-  //       this.setState((prevState) => {
-  //         return { counterValue: prevState.counterValue + valueIn };
-  //       });
-  //       break;
-  //     case "subtract":
-  //       this.setState((prevState) => {
-  //         return { counterValue: prevState.counterValue - valueIn };
-  //       });
-  //       break;
-  //     default:
-  //       break;
-  //   }
-  // };
-
   render() {
     return (
       <div className="container-inner">
@@ -58,10 +29,10 @@ class Counter extends Component {
         />
         <CounterButton
           buttonName={"Store Result"}
-          buttonFunction={this.props.onStoreResult}
+          buttonFunction={() => this.props.onStoreResult(this.props.ctr)}
         />
         <CounterResults
-          results={this.props.results}
+          results={this.props.res}
           deleteResult={this.props.onDeleteResult}
         />
       </div>
@@ -70,7 +41,8 @@ class Counter extends Component {
 }
 
 const mapStateToProps = (state) => {
-  return { ctr: state.counterValue, results: state.results };
+  console.log("State:", state);
+  return { ctr: state.ctr.counterValue, res: state.res.results };
 };
 
 const mapDispatchToProps = (dispatch) => {
@@ -80,7 +52,8 @@ const mapDispatchToProps = (dispatch) => {
     onAddToCounter: () => dispatch({ type: actionTypes.ADD, payload: 5 }),
     onSubtractFromCounter: () =>
       dispatch({ type: actionTypes.SUBTRACT, payload: 5 }),
-    onStoreResult: () => dispatch({ type: actionTypes.STORE_RESULT }),
+    onStoreResult: (result) =>
+      dispatch({ type: actionTypes.STORE_RESULT, result: result }),
     onDeleteResult: (elemId) =>
       dispatch({ type: actionTypes.DELETE_RESULT, elemId: elemId }),
   };
