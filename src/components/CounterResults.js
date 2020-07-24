@@ -8,7 +8,7 @@ const counterResults = (props) => {
   ));
 
   return (
-    <div className="container-inner">
+    <div className="container-inner" data-test="counter-results">
       <ul>{resultsList}</ul>
     </div>
   );

@@ -1,5 +1,3 @@
-import * as actionTypes from "./actions";
-
 import {
   increment,
   decrement,

@@ -1,0 +1,1 @@
+test("Renders without error", () => {});

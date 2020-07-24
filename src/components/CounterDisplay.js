@@ -2,7 +2,7 @@ import React from "react";
 
 const counterDisplay = (props) => {
   return (
-    <div>
+    <div data-test="counter-display">
       <h1>{props.counterValue}</h1>
     </div>
   );
