@@ -9,7 +9,9 @@
     "test": "jest --verbose --watch"
   },
   "jest": {
-    "setupFilesAfterEnv": "<rootDir>/src/setupTests.js"
+    "setupFilesAfterEnv": [
+      "<rootDir>/src/setupTests.js"
+    ]
   },
   "keywords": [],
   "author": "",
